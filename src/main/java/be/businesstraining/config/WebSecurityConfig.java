@@ -78,6 +78,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
             .antMatchers("/auth/**").permitAll()
 
+                // Désactiver temporairement la sécurité sur le rest
+                .antMatchers("/products/**").permitAll()
+
             .anyRequest().authenticated();
 
        httpSecurity

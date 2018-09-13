@@ -24,7 +24,7 @@ public class ProductsRestController {
     }
 
     @PostMapping("")
-    @PreAuthorize("hasRole('ADMIN')")
+   // @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> add(@RequestBody Product product) {
         Product result = repository.save(product);
         return (result != null)?
