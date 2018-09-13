@@ -19,12 +19,13 @@ public class ProductsRestController {
     private IProductsRepository repository;
 
     @GetMapping("")
+   // @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<Product> getAll() {
         return repository.findAll();
     }
 
     @PostMapping("")
-   // @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> add(@RequestBody Product product) {
         Product result = repository.save(product);
         return (result != null)?

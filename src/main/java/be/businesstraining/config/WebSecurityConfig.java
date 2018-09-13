@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/auth/**").permitAll()
 
                 // Désactiver temporairement la sécurité sur le rest
-                .antMatchers("/products/**").permitAll()
+               .antMatchers("/products/**").permitAll()  // Relaxer le CORS
 
             .anyRequest().authenticated();
 
