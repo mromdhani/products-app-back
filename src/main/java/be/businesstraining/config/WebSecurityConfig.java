@@ -78,10 +78,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
             .antMatchers("/auth/**").permitAll()
 
-                // Désactiver temporairement la sécurité sur le rest
-               .antMatchers("/products/**").permitAll()  // Relaxer le CORS
+                .antMatchers("/products/**").permitAll()  // Relaxer le CORS
 
-            .anyRequest().authenticated();
+                // Désactivé temporairement
+                .antMatchers("/orders/**").permitAll()  // Relaxer le CORS
+
+
+                .anyRequest().authenticated();
 
        httpSecurity
             .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

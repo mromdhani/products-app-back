@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -23,6 +24,16 @@ public class ProductsRestController {
     public List<Product> getAll() {
         return repository.findAll();
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getById(@PathVariable Long id) {
+
+        Optional<Product> compte = repository.findById(id);
+	    if (!compte.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok().body(compte.get());
+    }
+
 
     @PostMapping("")
     @PreAuthorize("hasRole('ADMIN')")
